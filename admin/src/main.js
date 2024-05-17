@@ -12,11 +12,11 @@ import store from './store'
 //引入element plus
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
-//登录页面用到的库
+//登录页面用到的库-粒子效果
 import Particles from "vue3-particles";
-// import Particles from "@tsparticles/vue3";
-// import { loadSlim } from "tsparticles-slim";
-
+//axios相应拦截器
+import '@/util/axios.config'
+ 
 const app = createApp(App)
 
 app.use(store)

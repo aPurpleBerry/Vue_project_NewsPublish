@@ -12,8 +12,8 @@
         </span>
         <template #dropdown>
           <el-dropdown-menu>
-            <el-dropdown-item>个人中心</el-dropdown-item>
-            <el-dropdown-item>退出</el-dropdown-item>
+            <el-dropdown-item @click="handleCenter">个人中心</el-dropdown-item>
+            <el-dropdown-item @click="logOut">退出</el-dropdown-item>
           </el-dropdown-menu>
         </template>
       </el-dropdown>
@@ -39,6 +39,11 @@ const handleCollapsed = () => {
 //跳转至个人中心
 const handleCenter = () => {
   $router.push('/center')
+}
+
+const logOut = () => {
+  localStorage.removeItem('token')
+  $router.push('/login')
 }
 </script>
 

@@ -32,6 +32,8 @@ export default { name:'Login' }
 <script setup>
 import {reactive, ref} from 'vue'
 import { useRouter } from 'vue-router';
+import axios from 'axios';
+import { ElMessage } from 'element-plus';
 const loginForm = reactive({
   username: '',
   password: ''
@@ -54,9 +56,23 @@ const $router = useRouter()
 const submitForm = () => {
   loginFormRef.value.validate((valid)=>{
     if(valid) {
-      console.log(loginForm);
-      localStorage.setItem('token','kerwin')
-      $router.push('/index')
+      // console.log('Login',loginForm);
+      axios.post('/adminapi/user/login',loginForm).then(res=>{
+        console.log(res.data);
+        if(res.data.ActionType === 'OK') {
+          $router.push('/index')
+          ElMessage({
+            type: 'success',
+            message: '登陆成功'
+          })
+          // localStorage.setItem('token','kerwin')
+        } else {
+          ElMessage({
+            type: 'error',
+            message: '用户名和密码不匹配'
+          })
+        }
+      })
     }
   })
 }
