@@ -5,7 +5,7 @@
       <span style="margin-left: 10px;">企业门户网站管理系统</span>
     </div>
     <div class="right">
-      <span>欢迎回来, admin</span>
+      <span>欢迎回来, {{$store.state.userInfo.username}}</span>
       <el-dropdown>
         <span class="el-dropdown-link">
           <el-icon :size="20"> <User></User> </el-icon>

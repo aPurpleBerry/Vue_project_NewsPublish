@@ -30,6 +30,8 @@ export default { name:'Login' }
 </script>
 
 <script setup>
+import { useStore } from "vuex";
+// import store from "@/store"
 import {reactive, ref} from 'vue'
 import { useRouter } from 'vue-router';
 import axios from 'axios';
@@ -38,7 +40,7 @@ const loginForm = reactive({
   username: '',
   password: ''
 })
-
+const store = useStore()
 const loginFormRef = ref()
 
 const loginRules = reactive({
@@ -58,8 +60,10 @@ const submitForm = () => {
     if(valid) {
       // console.log('Login',loginForm);
       axios.post('/adminapi/user/login',loginForm).then(res=>{
-        console.log(res.data);
+        // console.log(res.data);
         if(res.data.ActionType === 'OK') {
+          // console.log(res.data.data);
+          store.commit("changeUserInfo",res.data.data)
           $router.push('/index')
           ElMessage({
             type: 'success',
