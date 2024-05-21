@@ -9,7 +9,7 @@
       <el-row
           :gutter="20"
           class="el-row"
-      >
+      > 
           <el-col :span="8">
               <el-card class="box-card">
                   <el-avatar
