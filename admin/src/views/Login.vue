@@ -64,6 +64,7 @@ const submitForm = () => {
         if(res.data.ActionType === 'OK') {
           // console.log(res.data.data);
           store.commit("changeUserInfo",res.data.data)
+          store.commit("changeGetterRouter",false)
           $router.push('/index')
           ElMessage({
             type: 'success',

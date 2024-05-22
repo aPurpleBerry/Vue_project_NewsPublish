@@ -15,7 +15,7 @@
         <span>个人中心</span>
       </el-menu-item>
       <!-- 二级菜单 -->
-      <el-sub-menu index="/user-manage">
+      <el-sub-menu index="/user-manage" v-admin>
         <template #title>
           <el-icon><user-filled /></el-icon>
           <span>用户管理</span>
@@ -51,7 +51,17 @@ export default { name:'SideMenu' }
 import { HomeFilled, Avatar, UserFilled, MessageBox, Reading, Pointer } from '@element-plus/icons-vue'
  //import {ref, reactive} from 'vue'
 import { useRoute } from 'vue-router';
+import { useStore } from 'vuex'
+const store = useStore()
 const $route = useRoute()
+
+const vAdmin = {
+  mounted(el) {
+    if(store.state.userInfo !== 1) {
+      el.parentNode.removeChild(el)
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

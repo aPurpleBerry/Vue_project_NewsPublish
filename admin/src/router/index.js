@@ -42,6 +42,9 @@ router.beforeEach((to, from, next) => {
     } else {
       //第一次,还没有配置过路由
       if(!store.state.isGetterRouter){
+        //删除所有嵌套路由
+        //mainbox
+        router.removeRoute('mainbox')
         funcConfigRouter()
         next({
           path: to.fullPath
@@ -55,14 +58,29 @@ router.beforeEach((to, from, next) => {
 })
 
 const funcConfigRouter = ()=>{
+  if(!router.hasRoute('mainbox')) {
+    router.addRoute({
+      path: '/mainbox',
+      name: 'mainbox',
+      component: MainBox
+    })
+  }
+  
   routesConfig.forEach(item => {
-    router.addRoute('mainbox',item)
+    //如果路由中存在字段requireAdmin，就返回true
+    checkPermission(item) && router.addRoute('mainbox',item)
   })
 
   //改变仓库中的
   store.commit("changeGetterRouter", true)
 }
 
+const checkPermission = (item) =>{
+  if(item.requireAdmin) {
+    return store.state.userInfo.role === 1
+  } 
 
+  return true
+}
 
 export default router
