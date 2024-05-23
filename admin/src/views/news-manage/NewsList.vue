@@ -64,11 +64,8 @@
           </el-table>
       </el-card>
 
-      <el-dialog
-          v-model="dialogVisible"
-          title="预览新闻"
-          width="50%"
-      >
+      <!-- 预览 -->
+      <el-dialog  v-model="dialogVisible"  title="预览新闻"  width="50%">
           <div>
               <h2>{{previewData.title}}</h2>
               <div style="font-size:12px;color:gray;">{{formatTime.getTime(previewData.editTime)}}</div>
@@ -79,10 +76,7 @@
                   </el-icon>
               </el-divider>
 
-              <div
-                  v-html="previewData.content"
-                  class="htmlcontent"
-              ></div>
+              <div  v-html="previewData.content"  class="htmlcontent" ></div>
           </div>
       </el-dialog>
   </div>
@@ -93,6 +87,7 @@ import axios from "axios";
 import formatTime from "@/util/formatTime";
 import { Star, Edit, Delete, StarFilled } from "@element-plus/icons-vue";
 import {useRouter} from 'vue-router'
+import { ElMessage } from "element-plus";
 const router = useRouter()
 const tableData = ref([]);
 const previewData = ref({});
@@ -116,15 +111,27 @@ const categoryFormat = category => {
 
 const handleSwitchChange = async item => {
   // console.log(item)
-  await axios.put(`/adminapi/news/publish`, {
+  let res = await axios.put(`/adminapi/news/publish`, {
     _id: item._id,
     isPublish: item.isPublish
   });
+  if(item.isPublish === 1) {
+    ElMessage({
+      type: 'success',
+      message: '发布成功'
+    })
+  } else {
+    ElMessage({
+      type: 'success',
+      message: '取消发布'
+    })
+  }
+  // console.log(item.isPublish);
 
   await getTableData();
 };
 
-//預覽回調
+//预览回调
 const handlePreview = data => {
   // console.log(data)
   previewData.value = data;
@@ -134,8 +141,16 @@ const handlePreview = data => {
 //删除回调
 const handleDelete =async (item)=>{
   // console.log(item)
-  await axios.delete(`/adminapi/news/list/${item._id}`)
-  await getTableData()
+  try {
+    await axios.delete(`/adminapi/news/list/${item._id}`)
+    ElMessage({
+      type: 'success',
+      message: '删除成功'
+    })
+    await getTableData()
+  } catch(err) {
+    console.log(err);
+  }
 }
 
 //编辑回调

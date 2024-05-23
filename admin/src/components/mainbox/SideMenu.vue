@@ -57,7 +57,9 @@ const $route = useRoute()
 
 const vAdmin = {
   mounted(el) {
-    if(store.state.userInfo !== 1) {
+    // console.log('我运行了');
+    // console.log(typeof store.state.userInfo);
+    if(store.state.userInfo.role !== 1) {
       el.parentNode.removeChild(el)
     }
   }

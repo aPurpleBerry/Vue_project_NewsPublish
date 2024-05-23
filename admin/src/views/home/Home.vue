@@ -31,10 +31,16 @@
               height="200px"
           >
               <el-carousel-item
-                  v-for="item in 6"
-                  :key="item"
+                v-if="loopList.length"
+                  v-for="item in loopList"
+                  :key="item._id"
               >
-                  <h3>{{ item }}</h3>
+                  <div :style="{
+                    backgroundImage: `url(http://localhost:3000${item.cover})`,
+                    backgroundSize:'cover'
+                  }">
+                    <h3>{{ item.title }}</h3>
+                  </div>
               </el-carousel-item>
           </el-carousel>
       </el-card>
@@ -43,20 +49,35 @@
 
 <script setup>
 import { useStore } from "vuex";
-import {computed} from 'vue'
+import {computed,onMounted,ref} from 'vue'
+import axios from "axios";
+
 const store = useStore();
 // console.log(store.state);
 console.log(store.state.userInfo.avatar);
 const avatarUrl = computed(()=>store.state.userInfo.avatar?'http://localhost:3000'+store.state.userInfo.avatar:`https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png`)
 const welcomeText = computed(()=>new Date().getHours()<12?'要开心每一天.':'喝杯咖啡提提神吧.')
+
+onMounted(() => {
+  getData();
+});
+
+const loopList = ref([])
+const getData = async () => {
+  const res = await axios.get(`/adminapi/product/list`);
+  //    console.log(res.data.data)
+  loopList.value = res.data.data;
+  console.log(loopList.value);
+};
 </script>
+
 <style lang="scss" scoped>
 .box-card {
 margin-top: 50px;
 }
 
 .el-carousel__item h3 {
-color: #475669;
+color: white;
 font-size: 14px;
 opacity: 0.75;
 line-height: 200px;
