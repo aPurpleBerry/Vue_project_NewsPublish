@@ -5,7 +5,7 @@ module.exports = defineConfig({
   devServer:{
     proxy:{
       "/webapi":{
-        target:"http://localhost:3000",
+        target:"http://www.apurpleberry.cn",
         changeOrigin:true
       }
     }

@@ -55,7 +55,7 @@
                         <div
                             class="image"
                             :style="{
-                            backgroundImage:`url(http://localhost:3000${item.cover})`
+                            backgroundImage:`url(http://www.apurpleberry.cn:3000${item.cover})`
                         }"
                         >
 

@@ -12,7 +12,7 @@
             >
                 <div
                     class="item"
-                    :style="{backgroundImage:`url(http://localhost:3000${item.cover})`}"
+                    :style="{backgroundImage:`url(http://www.apurpleberry.cn:3000${item.cover})`}"
                 >
                     <el-card class="box-card">
                         <template #header>

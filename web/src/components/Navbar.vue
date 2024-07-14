@@ -19,7 +19,8 @@ import {useRoute} from 'vue-router'
 const route = useRoute()
 
 const handleClick = ()=>{
-    window.location = "http://localhost:8081"
+  // 打开一个新窗口，显示指定的 URL
+  window.open('http://www.apurpleberry.cn:84/', '_blank');
 }
 </script>
 <style scoped lang="scss">

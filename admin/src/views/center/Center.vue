@@ -101,7 +101,7 @@ const store = useStore();
 const avatarUrl = computed(
 () =>
   store.state.userInfo.avatar
-    ? "http://localhost:3000" + store.state.userInfo.avatar
+    ? "http://47.113.113.54:3000" + store.state.userInfo.avatar
     : `https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png`
 );
 
