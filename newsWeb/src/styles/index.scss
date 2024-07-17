@@ -1,0 +1,20 @@
+//引入清楚默认样式
+@import './reset.scss';
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: $main-bgc;
+}
+
+::-webkit-scrollbar-thumb {
+  width: 8px;
+  background-color: $scrollbar-static-color;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $scrollbar-hover-color;
+}
