@@ -39,10 +39,11 @@
       <!-- 3、关于我们 -->
       <swiper-slide>Slide 2</swiper-slide>
       <!-- 4、新闻动态 -->
-      <swiper-slide>Slide 3</swiper-slide>
+      <swiper-slide>
+        <Page4></Page4>
+      </swiper-slide>
       <!-- 加入我们 -->
       <swiper-slide>
-        Slide 4
         <Page5></Page5>
       </swiper-slide>
     </swiper>
@@ -54,6 +55,7 @@
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import Page5 from '../home-page/page5/index.vue'
+import Page4 from '../home-page/page4/index.vue'
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -117,7 +119,8 @@ export default {
   components: {
     Swiper,
     SwiperSlide,
-    Page5
+    Page5,
+    Page4
   },
   setup() {
     nextTick(()=>{
