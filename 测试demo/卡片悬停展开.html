@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/all.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="card"><!--第一个卡片-->
+            <div class="face face1"> <!--显示页-->
+                <div class="content"> <!--显示页内容-->
+                    <i class="fab fa-js fa-6x"></i>
+                    <h3>Script</h3>
+                </div>
+            </div>
+            <div class="face face2"> <!--附页-->
+                <div class="content">
+                    <p>JavaScript是一种具有函数优先的轻量级，
+                    解释型或即时编译型的编程语言。</p>
+                    <a href="#">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+<style>
+body{
+    margin: 0; /*外边距*/
+    padding: 0; /*内边距*/
+    min-height: 100vh;  /*最小高度*/
+    background: #333; /*背景颜色*/
+    display: flex; /*盒模型*/
+    justify-content: center; /*文档X轴布局*/
+    align-items: center; /*文档Y轴布局*/
+}
+.container{
+    width: 1000px; /*宽度*/
+    position: relative; /*相对定位*/
+    display: flex; /*盒模型*/
+    justify-content: space-between; /*文档X轴内容与内容间空隙相等*/
+}
+.container .card{
+    position: relative; /*相对定位*/
+}
+.container .card .face{ 
+    width: 300px; 
+    height: 200px; 
+    transition: 0.5s; /*过渡时间*/
+}
+.container .card .face.face1{ 
+    position: relative; 
+    background: #333; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 1; 
+    transform: translateY(100px); /*2D转换，Y轴移动*/
+} 
+.container .card:hover .face.face1{ /*此处为card标签悬停时，内容1复位*/
+    background: #ff0057; 
+    transform: translateY(0); 
+}
+.container .card .face.face1 .content{
+    opacity: 0.5; /*透明度*/
+    transition: 0.5s; 
+}
+.container .card:hover .face.face1 .content{ /*此处为card标签悬停时，更改封面的透明度*/
+    opacity: 1; /*透明度*/
+}
+.container .card .face.face1 .content h3{
+    margin: 10px 0 0; 
+    padding: 0; 
+    color:#fff; 
+    text-align: center; /*字体居中*/
+    font-size: 1.5em; /*字体大小*/
+}
+.container .card .face.face2{
+    position: relative; 
+    background: #fff; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px; 
+    box-sizing: border-box; /*设置盒子模型内布局，此处为元素的内边距盒边框不会影响最终大小*/
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8); /*阴影*/
+    transform: translateY(-100px); /*2D转换，Y轴移动*/
+}
+.container .card:hover .face.face2{ /*此处为card标签悬停时，内容2复位*/
+    transform: translateY(0px); 
+}
+.container .card .face.face2 p{
+    margin: 0; 
+    padding: 0; 
+}
+.container .card .face.face2 a{
+    margin:  15px 0 0; 
+    display: inline-block; /*设置为行内块元素*/
+    text-decoration: none; /*文字样式，此处为了删除下划线*/
+    font-weight: 900; /*字体粗细*/
+    color: #333; 
+    padding: 5px; 
+    border: 1px solid #333; 
+}
+.container .card .face.face2 a:hover{ /*此处为a标签悬停时*/
+    background: #333; 
+    color: #fff; 
+}
+
+
+</style>
