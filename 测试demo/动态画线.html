@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="showwindow-wrap">
+    <div class="showwindow">
+        <ul class="li-items">
+            <li>
+                <div class="region-wrap">
+                    <div class="region">
+                        <div class="content">
+                            <img src="./images/show-window/timg1.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="region-wrap">
+                    <div class="region">
+                        <div class="content">
+                            <img src="./images/show-window/timg1.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="region-wrap">
+                    <div class="region">
+                        <div class="content">
+                            <img src="./images/show-window/timg1.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="region-wrap">
+                    <div class="region">
+                        <div class="content">
+                            <img src="./images/show-window/timg.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="region-wrap">
+                    <div class="region">
+                        <div class="content">
+                            <img src="./images/show-window/timg.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div class="region-wrap">
+                    <div class="region">
+                        <div class="content">
+                            <img src="./images/show-window/timg.jpg"/>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+</body>
+</html>
+
+<style>
+  .showwindow-wrap
+    {
+        width: 100%;
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .showwindow
+    {
+        width:1200px;
+        flex: 1;
+        background: #f4f4f4;
+    }
+    .li-items
+    {
+        margin: 0px;
+        padding: 0px;
+        display:flex;
+        flex-direction: row;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .li-items>li
+    {
+        float: left;
+        width: 323px;
+        height: 222px;
+        overflow: hidden;
+        margin-left: -2px;
+        margin-top: -1px;
+    }
+    .region-wrap {
+        width: 320px;
+        height: 220px;
+        border: 1px solid #f4f4f4;
+    }
+
+    .region {
+        position: absolute;
+    }
+    .content
+    {
+        position:  absolute;
+        background-color: #fff;
+        top: 10px;
+        left: 10px;
+        width: 300px;
+        height: 200px;
+        /*border:1px solid #aa0507;*/
+    }
+    .content:before,.content:after
+    {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        color: blue;
+        content: '';
+        box-sizing: border-box;
+        margin: -10px;
+        z-index: 10;
+    }
+    .content:hover
+    {
+        cursor: pointer;
+    }
+    .content:hover:before
+    {
+        top: -1px;
+        right: 0;
+        bottom: 0;
+        left: -1px;
+        box-shadow: inset 0 0 0 1px;
+        animation: ClipBefore 4s linear infinite;
+    }
+    .content:hover:after
+    {
+        box-shadow: inset 0 0 0 1px;
+        animation: ClipAfter 4s linear infinite;
+        /*由于图片展示的区域比外边框小,所以这里要重新定位after的展示位置*/
+        top: 18px;
+        bottom: 0px;
+        right: 0px;
+        left: 18px;
+    }
+    .content>img
+    {
+        width: 300px;
+        height: 200px;
+    }
+
+    @keyframes ClipAfter {
+        0%, 100% {
+            clip: rect(0px,302px,202px,0px);
+        }
+        25% {
+            clip: rect(100px,302px,202px,150px);
+        }
+
+        50% {
+            clip: rect(200px,302px,202px,300px);
+        }
+        75% {
+            clip: rect(100px,302px,202px,150px);
+        }
+    }
+    @keyframes ClipBefore {
+        100%,0%{
+            clip:rect(0px,300px,200px,0px);
+        }
+        25%
+        {
+            clip:rect(0px,150px,100px,0px);
+        }
+        50%{
+            clip:rect(0px,0px,0px,0px);
+        }
+        75%{
+            clip:rect(0px,150px,100px,0px);
+        }
+    }
+    @keyframes ClipAfter {
+        0%, 100% {
+            /*为了在动画过程中能保留右边框和下边框,rect的right和bottom分别多取两个像素*/
+            /*重新定位后,为了在动画的终点和起点不要显示上边框和左边框,rect的top和left分别多取了二个像素*/
+            clip: rect(2px,302px,202px,2px);
+        }
+        25% {
+            clip: rect(100px,302px,202px,150px);
+        }
+
+        50% {
+            clip: rect(200px,302px,202px,300px);
+        }
+        75% {
+            clip: rect(100px,302px,202px,150px);
+        }
+    }
+    *{
+        font-size:12px;
+        list-style: none;
+        color: rgba(146, 248, 206, 0.91);
+    }
+</style>
