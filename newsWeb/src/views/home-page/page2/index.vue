@@ -51,7 +51,7 @@
       height: 40px;
       line-height: 39px;
       background-color: #2b73af;
-      font-family: FangSong;
+      // font-family: FangSong;
       font-weight: bolder;
       color: #fff;
       text-align: center;
@@ -82,9 +82,10 @@
         width: 150px;
         height: 150px;
         opacity: 0;
-        color: #134771;
+        color: #387cb4;
         font-weight: bolder;
-        font-family: FangSong;
+        // font-family: FangSong;
+        font-size: 15px;
         text-align: center;
         transition: 0.3s;
       }
@@ -104,8 +105,8 @@
     .cake-box span {
       background-color: #fff;
       text-align: center;
-      font-family: FangSong;
-      font-size: 15px;
+      // font-family: FangSong;
+      font-size: 14px;
       font-weight: bold;
       color: #2b73af;
       height: 25px;

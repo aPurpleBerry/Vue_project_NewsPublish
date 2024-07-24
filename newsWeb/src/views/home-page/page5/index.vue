@@ -165,14 +165,14 @@ nextTick(()=>{
   /* background-color: red; */
   width: 30px;
   color: white;
-  font-size: 20px;
+  font-size: 17px;
   font-weight: bolder;
-  margin-top: 100px;
+  margin-top: 130px;
   margin-left: 10px;
 }
 
 .box:hover .cover {
-    opacity: 0.4;
+    opacity: 0.8;
     transform: scale(1);
 }
 

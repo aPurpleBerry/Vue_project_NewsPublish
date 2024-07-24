@@ -1,6 +1,8 @@
 <template>
   <div class="nav">
-    <div class="logo">LOGO</div>
+    <div class="logo">
+      WELLCOME!
+    </div>
     <ul>
       <li @click="toHome" class="active">首页</li>
       <li @click="toProduct">产品介绍</li>
@@ -177,7 +179,9 @@ export default {
   font-size: 13px;
   align-items: center;
   .logo{
+
     // background-color: red;
+    width: 100px;
     height: 100%;
     line-height: 70px;
     // width: 100px;
