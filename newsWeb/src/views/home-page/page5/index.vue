@@ -60,7 +60,7 @@ import { nextTick } from 'vue';
 
 nextTick(()=>{
   let boxs = document.querySelectorAll('.box')
-  console.log(boxs);
+  // console.log(boxs);
 
   for(let i=0; i<boxs.length; i++) {
     boxs[i].addEventListener('mouseenter',()=>{

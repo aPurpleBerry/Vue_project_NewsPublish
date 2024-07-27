@@ -64,10 +64,13 @@
   .span-small {
     position: fixed;
     top: 150px;
-    font-size: 4rem; 
+    font-size: 3rem; 
+    font-weight: bolder;
     -webkit-text-stroke-width: 0px;
-    color: #fff;
-    font-family:'Courier New', Courier, monospace;
+    color: transparent;
+    -webkit-text-stroke-color: aliceblue;
+    -webkit-text-stroke-width: 2px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
   }
 }
 </style>

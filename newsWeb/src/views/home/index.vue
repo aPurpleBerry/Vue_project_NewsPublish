@@ -37,7 +37,7 @@
       <!-- 3、关于我们 -->
       <swiper-slide>Slide 2</swiper-slide>
       <!-- 4、新闻动态 -->
-      <swiper-slide> <Page4></Page4> </swiper-slide>
+      <swiper-slide> <Page3></Page3> </swiper-slide>
       <!-- 加入我们 -->
       <swiper-slide><Page5></Page5></swiper-slide>
     </swiper>
@@ -50,6 +50,7 @@
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import Page5 from '../home-page/page5/index.vue'
 import Page4 from '../home-page/page4/index.vue'
+import Page3 from '../home-page/page4/index.vue'
 import Page2 from '../home-page/page2/index.vue'
 import Page1 from '../home-page/page1/index.vue'
 // Import Swiper styles
@@ -117,6 +118,7 @@ export default {
     SwiperSlide,
     Page5,
     Page4,
+    Page3,
     Page2,
     Page1
   },
