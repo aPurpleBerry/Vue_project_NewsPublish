@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="text-container">
+    <div class="overlay">这是重叠的文字</div>
+    <div class="text">原始文字</div>
+  </div>
+</body>
+</html>
+<style>
+  .text-container {
+  position: relative;
+  width: 200px;
+  height: 100px;
+  background-color: green;
+}
+ 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  color: white; /* 设置文字颜色 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5); /* 半透明背景 */
+}
+ 
+.text {
+  width: 100%;
+  height: 30px;
+  padding-top: 60px;
+  background-color: red;
+  position: relative;
+  z-index: 1;
+  color: black; /* 设置文字颜色 */
+  text-align: center;
+}
+</style>

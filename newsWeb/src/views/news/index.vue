@@ -12,6 +12,21 @@
   <div class="news-box">
     <div class="news-nav"></div>
     <div class="news-content">
+      <!-- 一个新闻 -->
+      <div class="one-news">
+        <div class="one-pic">
+          tupian
+        </div>
+        <div class="one-text">
+          <div class="one-time">
+            <h1>11/24</h1>
+            <h2>2022</h2>
+          </div>
+          <div class="one-title">“你们好，见字如面! ”———阅见未名:图书捐赠公益活动</div>
+          <div class="one-main">2022年，米哈游《未定事件簿》携手韬奋基金会，联合开展了「阅见未名」图书捐赠公益活动。在《未定事件簿》各位玩家的热心支持下，目前已向云南省大理白族自治州11所小学...</div>
+        </div>
+      </div>
+      <!--  -->
       <div class="one-news">
         <div class="one-pic">
           tupian
@@ -98,7 +113,8 @@ let toHome = ()=>{
       cursor: pointer;
       width: 100%;
       height: 180px;
-      margin: 5px 0;
+      // margin: 5px 0;
+      margin-bottom: 20px;
       // background-color: #fff;
       // border-top: 2px solid blue;
       background: linear-gradient(-45deg, transparent 15px, #fff 0);
