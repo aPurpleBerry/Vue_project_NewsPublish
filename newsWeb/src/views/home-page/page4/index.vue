@@ -23,7 +23,7 @@
         <div class="mask"></div>
       </div>
       <div class="picmore">
-        <div class="findmore">查看更多新闻</div>
+        <div class="findmore" @click="toNews">查看更多新闻</div>
       </div>
     </div>
     <div class="picfloat">
@@ -35,6 +35,11 @@
 
 <script setup>
 import { nextTick } from 'vue';
+import { useRouter } from 'vue-router';
+const $router = useRouter()
+let toNews = ()=>{
+  $router.push('/news')
+}
 
 nextTick(()=>{
   const btns = document.querySelectorAll('.buttonbox .btn')
@@ -48,6 +53,7 @@ nextTick(()=>{
     })
   }
 })
+
 </script>
 
 <style scoped lang="scss">
@@ -247,6 +253,7 @@ nextTick(()=>{
         background-color: #fff;
         border: 1px solid rgb(157, 160, 164);
         border-top-right-radius: 15px;
+        cursor: pointer;
       }
     }
   }
