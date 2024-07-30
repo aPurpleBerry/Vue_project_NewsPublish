@@ -36,8 +36,8 @@
             <h1>11/24</h1>
             <h2>2022</h2>
           </div>
-          <div class="one-title">“你们好，见字如面! ”———阅见未名:图书捐赠公益活动</div>
-          <div class="one-main">2022年，米哈游《未定事件簿》携手韬奋基金会，联合开展了「阅见未名」图书捐赠公益活动。在《未定事件簿》各位玩家的热心支持下，目前已向云南省大理白族自治州11所小学...</div>
+          <div class="one-title">HwiCake荣获“第一届HAOCAKE全球美味奖”3星奖章</div>
+          <div class="one-main">近日，塔塔星球国际风味评鉴所公布了第一届HAOCAKE全球美味奖的获得者。HwiCake被授予3星奖章。这是继“2022年度MEIWEI空空赏”、“塔塔星球示范单位”...</div>
         </div>
       </div>
     </div>

@@ -2,12 +2,12 @@
   <div class="news">
     <div class="news-text">
       <div class="datebox">
-        <div class="date-detail">11/24</div>
-        <div class="date-year">2022</div>
+        <div class="date-detail">{{oneNews.month}}/{{oneNews.day}}</div>
+        <div class="date-year">{{oneNews.year}}</div>
       </div>
       <div class="contentbox">
-        <div class="texttitle">你们好见字如面</div>
-        <div class="textmain">2022年，米哈游《未定事件簿》携手韬奋基金会，联合开展了「阅见未名」图书捐赠公益活动。在《未定事件簿》各位玩家的热心支持下，目前已向云南省大理白族自治州11所小学、云南省普洱市澜沧拉祜族自治县36所小学...</div>
+        <div class="texttitle" v-html="oneNews.title"></div>
+        <div class="textmain">{{ oneNews.content }}</div>
         <div class="textmore">
           <span class="readme">READ MORE</span> <span class="read">>>></span>
         </div>
@@ -19,37 +19,102 @@
       </div>
     </div>
     <div class="news-pic">
-      <div class="picbgc">
+      <!-- 图片 -->
+      <div class="picbgc"  ref="myDiv">
+        <img :src="oneNews.bgcPic" alt="">
         <div class="mask"></div>
       </div>
       <div class="picmore">
+        <!-- <img src="@/assets/pic.png" alt=""> -->
         <div class="findmore" @click="toNews">查看更多新闻</div>
       </div>
     </div>
     <div class="picfloat">
-      <img src="@/assets/pic.png" alt="">
+      <img :src="oneNews.floatPic" alt="1">
+      <!-- <img src="@/assets/home-cake3.jpg" alt=""> -->
     </div>
 
   </div>
 </template>
 
 <script setup>
-import { nextTick } from 'vue';
+import { nextTick,onMounted,ref,reactive } from 'vue';
 import { useRouter } from 'vue-router';
 const $router = useRouter()
 let toNews = ()=>{
   $router.push('/news')
 }
 
+let oneNews = reactive(
+  {
+    month: '11',
+    day: '06',
+    year: '2023',
+    title: 'HwiCake荣获“第一届HAOCAKE<br>全球美味奖”3星奖章',
+    content: '近日，塔塔星球国际风味评鉴所公布了第一届HAOCAKE全球美味奖的获得者。HwiCake被授予3星奖章。这是继“2022年度MEIWEI空空赏”、“塔塔星球示范单位”...',
+    floatPic: new URL('@/assets/news/home-cake3.jpg',import.meta.url).href,
+    bgcPic: new URL('@/assets/news/home-cake3.jpg',import.meta.url).href
+  }
+)
+
+const shownews = [
+  {
+    month: '11',
+    day: '06',
+    year: '2023',
+    title: 'HwiCake荣获“第一届HAOCAKE<br>全球美味奖”3星奖章',
+    content: '近日，塔塔星球国际风味评鉴所公布了第一届HAOCAKE全球美味奖的获得者。HwiCake被授予3星奖章。这是继“2022年度MEIWEI空空赏”、“塔塔星球示范单位”...',
+    floatPic: new URL('@/assets/news/home-cake3.jpg',import.meta.url).href,
+    bgcPic: new URL('@/assets/news/home-cake3.jpg',import.meta.url).href
+  },
+  {
+    month: '03',
+    day: '03',
+    year: '2022',
+    title: '2222',
+    content: '222222222',
+    floatPic: new URL('@/assets/news/home-cake.jpg',import.meta.url).href,
+    bgcPic: new URL('@/assets/news/home-cake.jpg',import.meta.url).href
+  },
+  {
+    month: '06',
+    day: '13',
+    year: '2022',
+    title: '3333',
+    content: '333333333',
+    floatPic: new URL('@/assets/news/home-cake2.jpg',import.meta.url).href,
+    bgcPic: new URL('@/assets/news/home-cake2.jpg',import.meta.url).href
+  }
+]
+
+const myDiv = ref(null);
+onMounted(()=>{
+  // const picbgc = document.querySelector('.news .news-pic .picbgc')
+  const style = window.getComputedStyle(myDiv.value);
+  const backgroundImage = style.backgroundImage;
+  console.log('1');
+  console.log(backgroundImage); // 输出例如 "url('path/to/image.jpg')"
+  // backgroundImage = `url('@/assets/home-cake3.png')`
+})
 nextTick(()=>{
   const btns = document.querySelectorAll('.buttonbox .btn')
   btns[0].classList = 'active'
+
 
   for(let i=0; i<btns.length; i++) {
     // document.querySelectorAll('.active').classList.remove('.active')
     btns[i].addEventListener('click',()=>{
       document.querySelector('.buttonbox .active').classList = 'static'
       btns[i].classList = 'active'
+      // console.log(shownews[i]);
+      Object.assign(oneNews, shownews[i])
+      // oneNews.title = shownews[i].title
+      
+        const style = window.getComputedStyle(myDiv.value);
+        const backgroundImage = style.backgroundImage;
+        
+      console.log(backgroundImage);
+      backgroundImage = ''
     })
   }
 })
@@ -220,9 +285,15 @@ nextTick(()=>{
     .picbgc {
       width: 100%;
       height: 450px;
-      background-color: #fff;
-      background: url('@/assets/pic.png');
+      // background-color: #fff;
+      // background-image: url('@/assets/pic.png');
       position: relative;
+      overflow: hidden;
+
+    }
+    .picbgc img {
+      width: auto;
+      height: 100%;
     }
     .mask {
       position: absolute;
@@ -231,7 +302,7 @@ nextTick(()=>{
       width: 100%;
       height: 100%;
       // background: url('@/assets/mask.png') repeat center center;
-      background-image: url('@/assets/mask.png');
+      background-image: url('@/assets/news/mask.png');
       background-size: 15px 15px; /* 设置重复的图片块的大小 */
       background-repeat: repeat;
       background-color: rgba(255, 255, 255, .6);

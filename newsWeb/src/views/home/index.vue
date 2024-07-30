@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <div class="logo">
-      WELLCOME!
+      HwiCake
     </div>
     <ul>
       <li @click="toHome" class="active">首页</li>
