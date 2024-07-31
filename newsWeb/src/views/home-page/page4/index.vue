@@ -71,19 +71,19 @@ const shownews = [
     month: '03',
     day: '03',
     year: '2022',
-    title: '2222',
-    content: '222222222',
-    floatPic: new URL('@/assets/news/home-cake.jpg',import.meta.url).href,
-    bgcPic: new URL('@/assets/news/home-cake.jpg',import.meta.url).href
+    title: '美味常驻 童心不灭 | HwiCake携手<br>快乐星球成立童心保卫计划',
+    content: '2024年，HwiCake与快乐星球共同发起的旨在关注成年人童心快乐的“童心保卫计划”在塔塔星球举行。每个人都能定制童趣，每一层奶油，都藏着童年的欢笑；每一个卡通角色...',
+    floatPic: new URL('@/assets/news/home-cake.png',import.meta.url).href,
+    bgcPic: new URL('@/assets/news/home-cake.png',import.meta.url).href
   },
   {
     month: '06',
     day: '13',
     year: '2022',
-    title: '3333',
-    content: '333333333',
-    floatPic: new URL('@/assets/news/home-cake2.jpg',import.meta.url).href,
-    bgcPic: new URL('@/assets/news/home-cake2.jpg',import.meta.url).href
+    title: 'JuanJuan 荣获首届JuanJuan大赛<br>宇宙年度大卷',
+    content: '近日，由塔塔星球甜品研究院举办的“2023年度首届JuanJuan大赛”公布了最佳创新大卷、最佳创新塔塔星文化奖、最佳创新宇宙价值功能奖等系列获奖名单...',
+    floatPic: new URL('@/assets/news/home-cake2.png',import.meta.url).href,
+    bgcPic: new URL('@/assets/news/home-cake2.png',import.meta.url).href
   }
 ]
 
