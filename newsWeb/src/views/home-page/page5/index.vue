@@ -61,16 +61,22 @@ import { nextTick } from 'vue';
 nextTick(()=>{
   let boxs = document.querySelectorAll('.box')
   // console.log(boxs);
+  let masks = document.querySelectorAll('.scroll-container .mask')
+  console.log('==');
+  console.log(masks);
+  
 
   for(let i=0; i<boxs.length; i++) {
     boxs[i].addEventListener('mouseenter',()=>{
-      let masks = document.querySelectorAll('.mask')
-      //@ts-ignore
+      // alert(i)
+      //@ts-ignore     
       masks[i].style.opacity = 0;
     })
 
     boxs[i].addEventListener('mouseleave',()=>{
-      let masks = document.querySelectorAll('.mask')
+    // console.log('2');
+
+      // let masks = document.querySelectorAll('.mask')
       //@ts-ignore
       masks[i].style.opacity = 1;
     })
