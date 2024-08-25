@@ -11,9 +11,11 @@ var usersRouter = require('./routes/users');
 const UserRouter = require('./routes/admin/UserRouter');
 const NewsRouter = require('./routes/admin/NewsRouter');
 const ProductRouter = require('./routes/admin/ProductRouter');
+const AclRouter = require('./routes/admin/AclRouter');
 //web
 const webNewsRouter = require('./routes/web/NewsRouter');
 const webProductRouter = require('./routes/web/ProductRouter');
+
 
 var app = express();
 
@@ -32,35 +34,38 @@ app.use('/users', usersRouter);
 app.use(webNewsRouter)
 app.use(webProductRouter)
 
-//全局中间件
-app.use((req,res,next)=>{
-  //如果token有效
-  //如果token过期 返回401
-  if(req.url === '/adminapi/user/login') { 
-    next() 
-    return
-  }
-  const token = req.headers['authorization'].split(' ')[1]
-  if(token) {
-    let payload = JWT.verify(token)
-    console.log(payload);
-    if(payload) {
-      const newToken = JWT.generate({
-        _id: payload._id,
-        username: payload.username
-      },'1d')
-      res.header('Authorization',newToken)
-      next()
-    } else {
-      res.status(401).send({errCode: '-1',errorInfo:'token过期'})
-    }
-  }
-})
+// 全局中间件
+// app.use((req,res,next)=>{
+//   //如果token有效
+//   //如果token过期 返回401
+//   if(req.url === '/adminapi/user/login') { 
+//     next() 
+//     return
+//   }
+  
+//   const token = req.headers['authorization'].split(' ')[1]
+//   console.log('token',token);
+
+//   if(token) {
+//     let payload = JWT.verify(token)
+//     console.log(payload);
+//     if(payload) {
+//       const newToken = JWT.generate({
+//         _id: payload._id,
+//         username: payload.username
+//       },'1d')
+//       res.header('Authorization',newToken)
+//       next()
+//     } else {
+//       res.status(401).send({errCode: '-1',errorInfo:'token过期'})
+//     }
+//   }
+// })
 
 app.use(UserRouter)
 app.use(NewsRouter)
 app.use(ProductRouter)
-
+app.use(AclRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
