@@ -220,6 +220,8 @@ const handleDelete = async data => {
   if(data.username !== 'admin') {
     try{
       //   console.log(data);
+      console.log(`/adminapi/user/list/${data._id}`);
+      
       await axios.delete(`/adminapi/user/list/${data._id}`);
 
       //reload page

@@ -113,18 +113,37 @@ const UserController = {
 
   },
   getList: async(req,res) => {
-    const result = await UserService.getList(req.params)
+    
+    const result = await UserService.getList(req.query)
+        
     res.send({
       ActionType: 'ok',
-      data: result
+      data: {result}
+    })
+  },
+  findlist: async(req,res) => {
+    let ans = await UserService.findlist(req.body)
+    res.send({
+      ActionType: 'ok',
+      data: {
+        ans
+      }
     })
   },
   delList: async(req,res)=>{
-    // console.log(req.params.id)
-    const result = await UserService.delList({_id: req.params.id})
-    res.send({
-      ActionType: 'ok'
-    })
+    console.log('==================================')
+    console.log(req.query.id)
+    try {
+      const result = await UserService.delList({_id: req.query.id})
+      res.send({
+        ActionType: 'ok',
+        data: {
+          message: result
+        }
+      })
+    } catch(Err) {
+      console.log(Err);
+    }
   },
   putList: async(req,res)=>{
     const result = await UserService.putList(req.body)
