@@ -42,10 +42,22 @@ const UserService = {
     return id?UserModel.find({_id:id},['username','role','introduction','password'])
     :UserModel.find()
   },
+  //新增用户
+  addUser: async({username,name,password})=>{
+    return UserModel.create({
+      username, name, password
+    })
+  },
+  updateUser: async({_id,username,name})=>{
+    return UserModel.updateOne({_id:_id},{$set:{username: username,name:name}})
+  },
   findlist: async({username})=>{
     console.log(username);
     
     return UserModel.find({username})
+  },
+  doAssignRole: async({userId, role, roleName})=>{
+    return UserModel.updateOne({_id:userId},{$set:{role: role,roleName:roleName}})
   },
   delList: async({_id}) =>{
     let res = await UserModel.find({_id:_id},['username'])

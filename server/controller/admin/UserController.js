@@ -145,6 +145,33 @@ const UserController = {
       console.log(Err);
     }
   },
+  addUser: async(req,res)=>{
+    let ans = await UserService.addUser(req.body)
+    res.send({
+      ActionType: 'ok',
+      data: {
+        ans
+      }
+    })
+  },
+  updateUser: async(req,res)=>{
+    let ans = await UserService.updateUser(req.body)
+    res.send({
+      ActionType: 'ok',
+      data: {
+        ans
+      }
+    })
+  },
+  doAssignRole: async(req,res)=>{
+    let ans = await UserService.doAssignRole(req.body)
+    res.send({
+      ActionType: 'ok',
+      data: {
+        ans
+      }
+    })
+  },
   putList: async(req,res)=>{
     const result = await UserService.putList(req.body)
     res.send({

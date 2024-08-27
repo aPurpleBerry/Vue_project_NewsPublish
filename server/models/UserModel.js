@@ -8,11 +8,11 @@ const UserType = {
   username: String,
   password: String,
   name: String,
-  gender: Number, // 性别 0 1 2
-  introduction: String, //简介
-  avatar: String, //头像
-  role: Number, //管理员1 编辑2
-  roleName: String,
+  gender: {type:Number, default: 0}, // 性别 0 1 2
+  introduction: {type:String, default:""}, //简介
+  avatar: {type:String, default:""}, //头像
+  role: {type:Number, default: -1}, //管理员1 编辑2
+  roleName: {type:String, default:""},
   createTime: { type: Date, default: Date.now },
   updateTime: { type: Date, default: Date.now },
   // token: String
