@@ -12,18 +12,19 @@ const UserService = {
       _id
     })
   },
-  upload: async({_id, username, introduction, gender, avatar}) => {
+  upload: async({_id, username,name, introduction, gender, avatar}) => {
+    
     if(avatar) {
       return UserModel.updateOne({
         _id
       }, {
-        username, introduction, gender, avatar
+        username,name, introduction, gender, avatar
       })
     } else {
       return UserModel.updateOne({
         _id
       }, {
-        username, introduction, gender
+        username,name, introduction, gender
       })
     }
   },

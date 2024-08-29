@@ -14,3 +14,5 @@ NewsRouter.delete("/adminapi/news/list/:id",NewsController.delList)
 NewsRouter.put("/adminapi/news/publish",NewsController.publish)
 
 module.exports = NewsRouter
+
+// http://localhost:5173/adminapi/news/list/6652f31f2730d93d1d57949b

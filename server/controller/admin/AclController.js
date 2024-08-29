@@ -52,13 +52,20 @@ const AclController = {
     }
   },
   delRole: async(req,res)=>{
-    // console.log(req.params.id)
-    console.log(req.params.id);
-    
-    const result = await AclService.delRole({_id: req.params.id})
-    res.send({
-      ActionType: 'ok'
-    })
+    if(req.params.id == '66d0460852b485bba2be883e') {
+      res.send ({
+        ActionType: 'no',
+        data: {
+          message: '无法删除管理员'
+        }
+      })
+    } else {
+      const result = await AclService.delRole({_id: req.params.id})
+      res.send({
+        ActionType: 'ok'
+      })
+    }
+    // console.log(req.params.id);
   },
   findRole:async(req,res)=>{
     let ans = await AclService.findRole(req.body)
@@ -70,24 +77,42 @@ const AclController = {
     })
   },
   addRolePermission: async(req,res)=>{
-    console.log('AclController addrole');
-    let ans = await AclService.addRolePermission(req.body)
-    
-    res.send ({
-      ActionType: 'ok',
-      data: {
-        ans
-      }
-    })
+    if(req.body._id == '66d0460852b485bba2be883e') {
+      res.send ({
+        ActionType: 'noPermission',
+        data: {
+          message: '你没有权限'
+        }
+      })
+    } else {
+      console.log('AclController addrole');
+      let ans = await AclService.addRolePermission(req.body)
+      
+      res.send ({
+        ActionType: 'ok',
+        data: {
+          ans
+        }
+      })
+    }
   },
   updateRole:async(req,res)=>{
-    await AclService.updateRole(req.body)
-    res.send ({
-      ActionType: 'ok',
-      data: {
-        message: '更新成功'
-      }
-    })
+    if(req.body._id == '66d0460852b485bba2be883e') {
+      res.send ({
+        ActionType: 'no',
+        data: {
+          message: '无法修改管理员'
+        }
+      })
+    } else {
+      await AclService.updateRole(req.body)
+      res.send ({
+        ActionType: 'ok',
+        data: {
+          message: '更新成功'
+        }
+      })
+    }
   },
   //菜单管理
   getPermission: async(req, res) => {

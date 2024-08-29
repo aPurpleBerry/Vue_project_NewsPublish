@@ -45,11 +45,12 @@ const UserController = {
         data: {
           code: 200,
           username: ans[0].username,
+          name: ans[0].name,
           gender: ans[0].gender?ans[0].gender:0, // 性别 0 1 2
           introduction: ans[0].introduction, //简介
           avatar: ans[0].avatar, 
           role: ans[0].role, //管理员1 编辑2
-          routes:  ['Acl','PersonalCenter','User','Permission','Role','News','NewsAdd','NewsList','Vcomponent','Vform','Vicon','Vlist','Vtable'] 
+          routes:  ['Acl','PersonalCenter','User','Permission','Role','News','NewsAdd','NewsList','NewsEdit','Vcomponent','Vform','Vicon','Vlist','Vtable'] 
         }
       })
     }
@@ -59,39 +60,51 @@ const UserController = {
   upload: async(req,res)=>{
     // console.log(req.file);
     // console.log(req.body);
-    const {username,introduction,gender} = req.body
+    const {username,introduction,gender,name} = req.body
     const avatar = req.file?`/avataruploads/${req.file.filename}`:''
     
     const token = req.headers['authorization'].split(' ')[1]
     let payload = JWT.verify(token)
     console.log(payload._id);
 
-    //调用service模块更新数据
-    await UserService.upload({
-      _id: payload._id,
-      username,
-      introduction,
-      gender: Number(gender),
-      avatar
-    })
-    if(avatar) {
+    if(payload._id == '66cc728c6329c503b3102e9e') {
       res.send({
-        ActionType:'ok',
+        ActionType:'noPermission',
         data: {
-          username,introduction,
-          gender: Number(gender),
-          avatar
+          message: '你不能修改管理员'
         }
       })
-    } else{
-      res.send({
-        ActionType:'ok',
-        data: {
-          username,introduction,
-          gender: Number(gender),//没有avatar
-        }
+    } else {
+      //调用service模块更新数据
+      await UserService.upload({
+        _id: payload._id,
+        username,
+        name,
+        introduction,
+        gender: Number(gender),
+        avatar
       })
+      if(avatar) {
+        res.send({
+          ActionType:'ok',
+          data: {
+            username,name,introduction,
+            gender: Number(gender),
+            avatar
+          }
+        })
+      } else{
+        res.send({
+          ActionType:'ok',
+          data: {
+            username,name,introduction,
+            gender: Number(gender),//没有avatar
+          }
+        })
+      }
     }
+    
+    
   },
   add: async(req,res)=>{
     const {username,introduction,gender,role,password} = req.body
@@ -155,22 +168,41 @@ const UserController = {
     })
   },
   updateUser: async(req,res)=>{
-    let ans = await UserService.updateUser(req.body)
-    res.send({
-      ActionType: 'ok',
-      data: {
-        ans
-      }
-    })
+    if(req.body._id == '66cc728c6329c503b3102e9e') {
+      res.send({
+        ActionType: 'noPermission',
+        data: {
+          message: '你没有权限修改管理员'
+        }
+      })
+    } else {
+      let ans = await UserService.updateUser(req.body)
+      res.send({
+        ActionType: 'ok',
+        data: {
+          ans
+        }
+      })
+    }
   },
   doAssignRole: async(req,res)=>{
-    let ans = await UserService.doAssignRole(req.body)
-    res.send({
-      ActionType: 'ok',
-      data: {
-        ans
-      }
-    })
+    if(req.body.userId == '66cc728c6329c503b3102e9e') {
+      res.send({
+        ActionType: 'noPermission',
+        data: {
+          message: '你没有权限分配管理员的角色'
+        }
+      })
+    } else {
+      let ans = await UserService.doAssignRole(req.body)
+      res.send({
+        ActionType: 'ok',
+        data: {
+          ans
+        }
+      })
+    }
+    
   },
   putList: async(req,res)=>{
     const result = await UserService.putList(req.body)

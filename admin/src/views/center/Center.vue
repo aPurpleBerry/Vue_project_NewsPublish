@@ -140,8 +140,8 @@ const options = [
 
 //每次选择完图片之后的回调
 const handleChange = file => {
-userForm.avatar = URL.createObjectURL(file);
-userForm.file = file;
+  userForm.avatar = URL.createObjectURL(file);
+  userForm.file = file;
 };
 //更新提交
 const submitForm = () => {
