@@ -10,9 +10,24 @@
     </ul>
   </div>
   <div class="news-box">
-    <div class="news-nav"></div>
+    <div class="tab-buttons">
+      <button data-tab="tab1" class="active">全部资讯</button>
+      <button data-tab="tab2">产品新闻</button>
+      <button data-tab="tab3">公司资讯</button>
+    </div>
+
+    <div class="tab-content active" id="tab1">
+      <p>Content of Tab 1</p>
+    </div>
+    <div class="tab-content" id="tab2">
+      <p>Content of Tab 2</p>
+    </div>
+    <div class="tab-content" id="tab3">
+      <p>Content of Tab 3</p>
+    </div>
+
+    <!-- <div class="news-nav"></div>
     <div class="news-content">
-      <!-- 一个新闻 -->
       <div class="one-news">
         <div class="one-pic">
           tupian
@@ -26,7 +41,6 @@
           <div class="one-main">2022年，米哈游《未定事件簿》携手韬奋基金会，联合开展了「阅见未名」图书捐赠公益活动。在《未定事件簿》各位玩家的热心支持下，目前已向云南省大理白族自治州11所小学...</div>
         </div>
       </div>
-      <!--  -->
       <div class="one-news">
         <div class="one-pic">
           tupian
@@ -40,16 +54,38 @@
           <div class="one-main">近日，塔塔星球国际风味评鉴所公布了第一届HAOCAKE全球美味奖的获得者。HwiCake被授予3星奖章。这是继“2022年度MEIWEI空空赏”、“塔塔星球示范单位”...</div>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script setup>
 import { useRouter } from 'vue-router';
-const $router = useRouter()
+import { onMounted, ref } from 'vue';
+
+const $router = useRouter();
 let toHome = ()=>{
   $router.push('/home')
 }
+onMounted(()=>{
+   // 获取所有的按钮和内容
+   const buttons = document.querySelectorAll('.tab-buttons button');
+  const contents = document.querySelectorAll('.tab-content');
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      // 移除所有按钮的 active 类
+      buttons.forEach(btn => btn.classList.remove('active'));
+      // 给当前点击的按钮添加 active 类
+      button.classList.add('active');
+
+      // 隐藏所有内容
+      contents.forEach(content => content.classList.remove('active'));
+      // 根据 data-tab 显示对应的内容
+      const targetContent = document.getElementById(button.getAttribute('data-tab'));
+      targetContent.classList.add('active');
+    });
+  });
+})
 </script>
 
 <style lang="scss" scoped>
@@ -176,5 +212,35 @@ let toHome = ()=>{
       
     }
   }
+
+  .tab-buttons {
+      display: flex;
+      margin-bottom: 10px;
+    }
+
+    .tab-buttons button {
+      padding: 10px 20px;
+      cursor: pointer;
+      border: none;
+      background-color: #f0f0f0;
+      margin-right: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .tab-buttons button.active {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .tab-content {
+      display: none;
+      padding: 20px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
 }
 </style>

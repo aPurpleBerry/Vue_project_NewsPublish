@@ -14,11 +14,6 @@
   <!-- https://stackoverflow.com/questions/64872840/how-to-use-swiper-slideto-in-vue3-0 -->
   <!-- https://blog.canopas.com/implement-different-types-of-sliders-using-vue-3-and-swiper-7-ab79bd5abe28 -->
   <div id="swiper-container" style="">
-    <!-- 小圆点
-      :pagination="{
-        clickable: true,
-      }"
-    -->
     <swiper
       :direction="'vertical'"
       :slidesPerView="1"

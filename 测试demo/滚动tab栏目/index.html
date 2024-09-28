@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    .container {
+      display: flex;
+      flex-direction: column;
+      height: 300vh; /* 模拟滚动页面 */
+    }
+
+    .box {
+      width: 150px;
+      height: 150px;
+      margin: 20px auto;
+      background-color: lightblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      color: white;
+      transition: transform 0.6s ease, background-color 0.6s ease;
+      transform-style: preserve-3d;
+    }
+
+    .box.hover {
+      transform: rotateY(180deg); /* Y轴翻转 */
+      background-color: #007bff; /* 背景翻转颜色 */
+    }
+
+  </style>
+  <title>scrollIntoView 翻转效果</title>
+</head>
+<body>
+
+<div class="container">
+  <div class="box" id="box1">Box 1</div>
+  <div class="box" id="box2">Box 2</div>
+  <div class="box" id="box3">Box 3</div>
+</div>
+
+<script>
+  // 选择所有box元素
+  const boxes = document.querySelectorAll('.box');
+
+  boxes.forEach(box => {
+    // 监听鼠标悬浮事件
+    box.addEventListener('mouseenter', () => {
+      // 使元素滚动到可视区域
+      box.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // 添加hover类，实现翻转
+      box.classList.add('hover');
+    });
+
+    // 监听鼠标离开事件
+    box.addEventListener('mouseleave', () => {
+      // 移除hover类，恢复原始状态
+      box.classList.remove('hover');
+    });
+  });
+</script>
+
+</body>
+</html>

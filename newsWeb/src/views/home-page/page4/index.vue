@@ -144,29 +144,8 @@ nextTick(()=>{
   transition: all 1s none;
   cursor: pointer;
 }
-.picfloat {
-  width: 400px;
-  height: 220px;
-  background-color: skyblue;
-  position: fixed;
-  top: 180px;
-  left: 40%;
-  // background-image: url('@/assets/pic.png');
-  // background-repeat: no-repeat;
-  // background-size: cover;
-  overflow: hidden;
-  z-index: 100;
-}
-.picfloat img{
-  width: 100%;
-  height: 100%;
-  transform: scale(1);
-  transition: all 1s linear;
-}
-.picfloat img:hover {
-  transform: scale(1.1);
-  transition: all 1s linear;
-}
+
+
 .news {
   // background-color: red;
   width: 800px;
@@ -328,5 +307,36 @@ nextTick(()=>{
       }
     }
   }
+  .picfloat {
+    width: 400px;
+    height: 220px;
+    // background-color: skyblue;
+    position: absolute;
+    top: 20%;
+    left: 40%;
+    // transform: translate(-40%, -60%);
+    // position: fixed;
+    // flex: none;
+    // float: left;
+    // top: 180px;
+    // left: 40%;
+    // background-image: url('@/assets/pic.png');
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    overflow: hidden;
+    z-index: 100;
+    .picfloat img{
+      width: 100%;
+      height: 100%;
+      transition: transform 0.3s ease;
+      // transform: scale(1);
+      // transition: all 1s linear;
+    }
+    .picfloat:hover img{
+      transform: scale(1.2);
+      // transition: all 1s linear;
+    }
+  }
 }
+
 </style>
