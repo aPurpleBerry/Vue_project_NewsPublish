@@ -111,7 +111,7 @@ nextTick(()=>{
       // oneNews.title = shownews[i].title
       
         const style = window.getComputedStyle(myDiv.value);
-        const backgroundImage = style.backgroundImage;
+        let backgroundImage = style.backgroundImage;
         
       console.log(backgroundImage);
       backgroundImage = ''
