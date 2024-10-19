@@ -21,4 +21,7 @@ UserRouter.get('/adminapi/user/list/:id',UserController.getList)
 UserRouter.put('/adminapi/user/list/:id',UserController.putList)
 UserRouter.delete('/adminapi/user/list',UserController.delList)
 
+UserRouter.post('/adminapi/user/addmessage',UserController.addmessage)
+UserRouter.get('/adminapi/user/messagelist',UserController.messagelist)
+
 module.exports = UserRouter;

@@ -126,9 +126,7 @@ const UserController = {
 
   },
   getList: async(req,res) => {
-    
     const result = await UserService.getList(req.query)
-        
     res.send({
       ActionType: 'ok',
       data: {result}
@@ -209,7 +207,24 @@ const UserController = {
     res.send({
       ActionType: 'ok'
     })
-  }
+  },
+//留言板
+  addmessage: async(req,res)=>{
+    let ans = await UserService.addmessage(req.body)
+    res.send({
+      ActionType: 'ok',
+      data: {
+        ans
+      }
+    })
+  },
+  messagelist: async(req,res) => {
+    const result = await UserService.messagelist(req.query)
+    res.send({
+      ActionType: 'ok',
+      data: {result}
+    })
+  },
 }
 
 module.exports = UserController

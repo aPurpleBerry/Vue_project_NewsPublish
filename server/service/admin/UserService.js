@@ -1,4 +1,5 @@
 const UserModel = require('../../models/UserModel')
+const MessageModel = require('../../models/MessageModel')
 
 const UserService = {
   login: async ({username, password}) =>{
@@ -71,7 +72,17 @@ const UserService = {
   },
   putList: async(body)=>{
     return UserModel.updateOne({_id:body._id},body)
-  }
+  },
+  addmessage: async({message})=>{
+    console.log(message);
+    
+    return MessageModel.create({
+      message
+    })
+  },
+  messagelist: async()=>{
+    return MessageModel.find()
+  },
 }
 
 module.exports = UserService
