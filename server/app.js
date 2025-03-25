@@ -15,7 +15,8 @@ const AclRouter = require('./routes/admin/AclRouter');
 //web
 const webNewsRouter = require('./routes/web/NewsRouter');
 const webProductRouter = require('./routes/web/ProductRouter');
-
+//aplumweb
+const aplumwebRouter = require('./routes/aplumweb/CategoryRouter');
 
 var app = express();
 
@@ -33,15 +34,26 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use(webNewsRouter)
 app.use(webProductRouter)
+app.use(aplumwebRouter)
 
 // 全局中间件
 app.use((req,res,next)=>{
+  // 免鉴权路径列表
+  const whiteList = ['/adminapi/user/login'];
+  // 如果是白名单 或者是 web 前台接口 直接跳过鉴权
+  if (
+    whiteList.includes(req.url) || 
+    req.url.startsWith('/webapi/')
+  ) {
+    return next();
+  }
+
   //如果token有效
   //如果token过期 返回401
-  if(req.url === '/adminapi/user/login') { 
-    next() 
-    return
-  }
+  // if(req.url === '/adminapi/user/login') { 
+  //   next() 
+  //   return
+  // }
   
   const token = req.headers['authorization'].split(' ')[1]
   console.log('全局中间件');
